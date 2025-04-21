@@ -24,3 +24,49 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(59, 130, 246, 0.5); }
+}
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes orbit {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes comet {
+  0% { transform: translate(-100vw, 100vh); opacity: 0.8; }
+  100% { transform: translate(100vw, -100vh); opacity: 0; }
+}
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(59, 130, 246, 0.5); }
+}
+@keyframes ray-pulse {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 0.3; }
+}
+.animate-twinkle { animation: twinkle 2s infinite; }
+.animate-orbit { animation: orbit 10s infinite; }
+.animate-comet { animation: comet 5s infinite linear; }
+.animate-glow { animation: glow 2s ease-in-out infinite; }
+.animate-ray-pulse { animation: ray-pulse 3s infinite; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-1000 { animation-delay: 1s; }
+.delay-2000 { animation-delay: 2s; }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+}
+

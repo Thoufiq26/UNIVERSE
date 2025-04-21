@@ -1,103 +1,278 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from 'react';
+import Link from 'next/link';
+
+function App() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .min-h-screen { min-height: 100vh; }
+            .flex { display: flex; }
+            .flex-col { flex-direction: column; }
+            .items-center { align-items: center; }
+            .justify-center { justify-content: center; }
+            .bg-black { background: #000; }
+            .bg-opacity-90 { opacity: 0.9; }
+            .text-white { color: #fff; }
+            .overflow-hidden { overflow: hidden; }
+            .relative { position: relative; }
+            .absolute { position: absolute; }
+            .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+            .pointer-events-none { pointer-events: none; }
+            .rounded-full { border-radius: 9999px; }
+            .opacity-50 { opacity: 0.5; }
+            .opacity-70 { opacity: 0.7; }
+            .opacity-80 { opacity: 0.8; }
+            .opacity-40 { opacity: 0.4; }
+            .opacity-60 { opacity: 0.6; }
+            .top-10\\% { top: 10%; }
+            .left-20\\% { left: 20%; }
+            .top-30\\% { top: 30%; }
+            .left-70\\% { left: 70%; }
+            .top-60\\% { top: 60%; }
+            .left-40\\% { left: 40%; }
+            .top-20\\% { top: 20%; }
+            .left-10\\% { left: 10%; }
+            .top-40\\% { top: 40%; }
+            .right-20\\% { right: 20%; }
+            .top-15\\% { top: 15%; }
+            .right-30\\% { right: 30%; }
+            .top-50\\% { top: 50%; }
+            .left-50\\% { left: 50%; }
+            .top-25\\% { top: 25%; }
+            .right-15\\% { right: 15%; }
+            .top-65\\% { top: 65%; }
+            .left-25\\% { left: 25%; }
+            .top-35\\% { top: 35%; }
+            .right-40\\% { right: 40%; }
+            .z-0 { z-index: 0; }
+            .z-10 { z-index: 10; }
+            .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+            .sm\\:text-6xl { @media (min-width: 640px) { font-size: 3.75rem; line-height: 1; } }
+            .md\\:text-7xl { @media (min-width: 768px) { font-size: 4.5rem; line-height: 1; } }
+            .font-extrabold { font-weight: 800; }
+            .tracking-tight { letter-spacing: -0.025em; }
+            .mt-6 { margin-top: 1.5rem; }
+            .text-base { font-size: 1rem; line-height: 1.5rem; }
+            .sm\\:text-lg { @media (min-width: 640px) { font-size: 1.125rem; line-height: 1.75rem; } }
+            .md\\:text-xl { @media (min-width: 768px) { font-size: 1.25rem; line-height: 1.75rem; } }
+            .text-gray-400 { color: #9ca3af; }
+            .max-w-lg { max-width: 32rem; }
+            .text-center { text-align: center; }
+            .mt-8 { margin-top: 2rem; }
+            .mt-4 { margin-top: 1rem; }
+            .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+            .font-semibold { font-weight: 600; }
+            .transition-all { transition: all 0.3s; }
+            .duration-300 { transition-duration: 300ms; }
+            .hover\\:scale-110:hover { transform: scale(1.1); }
+            .portal-button {
+              width: 120px;
+              height: 120px;
+              background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, #1e3a8a 40%, #000 70%);
+              position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              color: #fff;
+              font-size: 1rem;
+              font-weight: 600;
+              text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+              overflow: hidden;
+              border: 2px solid rgba(59, 130, 246, 0.5);
+              box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            }
+            .portal-button:hover {
+              box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 40px rgba(147, 51, 234, 0.5);
+            }
+            .portal-button::before {
+              content: '';
+              position: absolute;
+              width: 20px;
+              height: 20px;
+              background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+              top: -30px;
+              left: 50%;
+              transform: translateX(-50%);
+              opacity: 0;
+              transition: all 0.4s;
+            }
+            .portal-button:hover::before {
+              top: 120px;
+              opacity: 1;
+            }
+            .portal-button::after {
+              content: '';
+              position: absolute;
+              width: 15px;
+              height: 15px;
+              background: radial-gradient(circle, rgba(147, 51, 234, 0.8), transparent);
+              bottom: -30px;
+              left: 70%;
+              transform: translateX(-50%);
+              opacity: 0;
+              transition: all 0.4s 0.2s;
+            }
+            .portal-button:hover::after {
+              bottom: 120px;
+              opacity: 1;
+            }
+            .portal-text {
+              transition: transform 0.3s;
+            }
+            .portal-button:hover .portal-text {
+              transform: translateY(-2px);
+            }
+            .caption {
+              font-family: 'Arial', sans-serif;
+              text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+            }
+            @keyframes twinkle {
+              0%, 100% { opacity: 0.4; }
+              50% { opacity: 1; }
+            }
+            @keyframes orbit {
+              0% { transform: translate(0, 0); }
+              50% { transform: translate(20px, 30px); }
+              100% { transform: translate(0, 0); }
+            }
+            @keyframes comet {
+              0% { transform: translate(-100vw, 100vh); opacity: 0.8; }
+              100% { transform: translate(100vw, -100vh); opacity: 0; }
+            }
+            @keyframes glow {
+              0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+              50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(59, 130, 246, 0.5); }
+            }
+            @keyframes sun-pulse {
+              0% { transform: scale(1); opacity: 0.8; }
+              50% { transform: scale(1.1); opacity: 1; }
+              100% { transform: scale(1); opacity: 0.8; }
+            }
+            @keyframes ray-flicker {
+              0% { opacity: 0.3; transform: rotate(0deg); }
+              50% { opacity: 0.5; transform: rotate(5deg); }
+              100% { opacity: 0.3; transform: rotate(0deg); }
+            }
+            @keyframes black-hole-spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            @keyframes portal-pulse {
+              0% { transform: scale(1); opacity: 0.8; }
+              50% { transform: scale(1.05); opacity: 1; }
+              100% { transform: scale(1); opacity: 0.8; }
+            }
+            @keyframes portal-swirl {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            .animate-twinkle { animation: twinkle 2s infinite; }
+            .animate-orbit { animation: orbit 10s infinite; }
+            .animate-comet { animation: comet 5s infinite linear; }
+            .animate-glow { animation: glow 2s ease-in-out infinite; }
+            .animate-sun-pulse { animation: sun-pulse 4s infinite; }
+            .animate-ray-flicker { animation: ray-flicker 3s infinite; }
+            .animate-black-hole-spin { animation: black-hole-spin 20s linear infinite; }
+            .animate-portal-pulse { animation: portal-pulse 3s infinite; }
+            .animate-portal-swirl { animation: portal-swirl 40s linear infinite; }
+            .delay-500 { animation-delay: 0.5s; }
+            .delay-1000 { animation-delay: 1s; }
+            .delay-2000 { animation-delay: 2s; }
+            .delay-300 { animation-delay: 0.3s; }
+            .delay-700 { animation-delay: 0.7s; }
+            .delay-1200 { animation-delay: 1.2s; }
+            .delay-1500 { animation-delay: 1.5s; }
+          `,
+        }}
+      />
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-opacity-90 text-white overflow-hidden relative">
+        {/* Sunlight Effect */}
+        <div
+          className="absolute top-0 bottom-0 left-0 w-96 h-full z-0"
+          style={{
+            background: 'radial-gradient(circle at 0% 50%, rgba(255, 245, 200, 0.9) 0%, rgba(255, 200, 100, 0.4) 20%, transparent 50%)',
+          }}
+        >
+          <div
+            className="absolute w-24 h-24 top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full opacity-80 animate-sun-pulse"
+            style={{ filter: 'blur(10px)' }}
+          />
+          <div
+            className="absolute w-96 h-2 top-1/2 left-0 transform -translate-y-1/2 bg-gradient-to-r from-white/50 to-transparent opacity-50 animate-ray-flicker"
+            style={{ transformOrigin: 'left' }}
+          />
+          <div
+            className="absolute w-64 h-1 top-[48%] left-0 transform -translate-y-1/2 bg-gradient-to-r from-white/30 to-transparent opacity-40 animate-ray-flicker delay-500"
+            style={{ transformOrigin: 'left' }}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Black Hole Effect */}
+        <div
+          className="absolute w-48 h-48 top-1/2 right-[10%] z-0"
+          style={{
+            background: 'radial-gradient(circle, #000 20%, rgba(100, 100, 255, 0.3) 30%, transparent 50%)',
+            filter: 'blur(5px)',
+          }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+          <div
+            className="absolute w-64 h-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-300/50 to-transparent opacity-70 animate-black-hole-spin"
+            style={{ transformOrigin: 'center' }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <div
+            className="absolute w-64 h-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-300/50 to-transparent opacity-70 animate-black-hole-spin"
+            style={{ transformOrigin: 'center', transform: 'rotate(90deg)' }}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+        </div>
+        {/* Background Animated Elements */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {/* Stars */}
+          <div className="absolute w-2 h-2 bg-white rounded-full opacity-50 animate-twinkle top-10% left-20%" />
+          <div className="absolute w-1 h-1 bg-white rounded-full opacity-70 animate-twinkle delay-500 top-30% left-70%" />
+          <div className="absolute w-3 h-3 bg-white rounded-full opacity-40 animate-twinkle delay-1000 top-60% left-40%" />
+          <div className="absolute w-2 h-2 bg-white rounded-full opacity-60 animate-twinkle delay-300 top-15% right-30%" />
+          <div className="absolute w-1 h-1 bg-white rounded-full opacity-50 animate-twinkle delay-700 top-50% left-50%" />
+          <div className="absolute w-2 h-2 bg-white rounded-full opacity-70 animate-twinkle delay-1200 top-25% right-15%" />
+          <div className="absolute w-1 h-1 bg-white rounded-full opacity-40 animate-twinkle delay-1500 top-65% left-25%" />
+          <div className="absolute w-3 h-3 bg-white rounded-full opacity-60 animate-twinkle delay-200 top-35% right-40%" />
+          <div className="absolute w-2 h-2 bg-white rounded-full opacity-50 animate-twinkle delay-500 top-20% left-30%" />
+          <div className="absolute w-1 h-1 bg-white rounded-full opacity-70 animate-twinkle delay-1000 top-40% left-60%" />
+          {/* Planets */}
+          <div
+            className="absolute w-12 h-12 rounded-full opacity-60 animate-orbit top-20% left-10%"
+            style={{ background: 'linear-gradient(to bottom right, #60a5fa, #a855f7)' }}
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div
+            className="absolute w-8 h-8 rounded-full opacity-50 animate-orbit delay-2000 top-40% right-20%"
+            style={{ background: 'linear-gradient(to bottom right, #f87171, #facc15)' }}
+          />
+          {/* Comet */}
+          <div className="absolute w-4 h-4 bg-white rounded-full opacity-80 animate-comet" />
+        </div>
+        {/* Main Content */}
+        <div className="relative z-10">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight animate-glow">
+            THE UNIVERSE
+          </h1>
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-400 max-w-lg text-center">
+            Embark on a cosmic journey to uncover the secrets of stars, galaxies, and beyond.
+          </p>
+          <div className="mt-8 flex flex-col items-center">
+            <p className="text-lg font-semibold caption">Launch into the Cosmos</p>
+            <Link href="/features">
+              <button className="mt-4 portal-button rounded-full transition-all duration-300 hover:scale-110 animate-portal-pulse">
+                <span className="portal-text animate-portal-swirl">Explore Now</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
+
+export default App;
