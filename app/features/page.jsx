@@ -210,7 +210,7 @@ const Features = () => {
               <div className="feature-icon">🌍</div>
               <h2 className="feature-title">Solar System Odyssey</h2>
               <p className="feature-desc">
-                Embark on a virtual voyage through our Solar System in stunning 3D, uncovering cosmic secrets and planetary wonders.
+                Embark on a virtual voyage through our Solar System, uncovering cosmic secrets and planetary wonders.
               </p>
               <Link href="/features/solar-system" className="learn-more">Start Journey</Link>
             </div>
