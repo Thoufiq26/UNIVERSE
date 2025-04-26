@@ -2,9 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Navbar from '../../components/Navbar';
 import TypewriterText from '@/components/TypeWriter';
-;
 
 const Features = () => {
   return (
@@ -110,81 +108,121 @@ const Features = () => {
             .delay-1000 { animation-delay: 1s; }
             .delay-300 { animation-delay: 0.3s; }
             .delay-700 { animation-delay: 0.7s; }
+            .rocket-launch {
+              position: absolute;
+              bottom: -100px;
+              left: -100px;
+              width: 300px;
+              height: 500px;
+              background: url('https://www.svgrepo.com/show/426222/rocket.svg') no-repeat center;
+              background-size: contain;
+              animation: rocket-diagonal 15s ease-in-out infinite;
+              opacity: 0.9;
+              z-index: 0;
+              filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+              transform: rotate(45deg);
+            }
+            .rocket-flame {
+              position: absolute;
+              bottom: -80px;
+              left: 50%;
+              transform: translateX(-50%) rotate(-45deg);
+              width: 80px;
+              height: 120px;
+              background: radial-gradient(circle, #ff4500 10%, #ffa500 50%, transparent 70%);
+              opacity: 0.9;
+              animation: flame-flicker 0.5s ease-in-out infinite;
+            }
+            @keyframes rocket-diagonal {
+              0% { transform: translate(0, 0) rotate(45deg); opacity: 0.9; }
+              50% { transform: translate(120vw, -120vh) rotate(45deg); opacity: 0.4; }
+              100% { transform: translate(0, 0) rotate(45deg); opacity: 0.9; }
+            }
+            @keyframes flame-flicker {
+              0% { transform: translateX(-50%) rotate(-45deg) scale(1); opacity: 0.9; }
+              50% { transform: translateX(-50%) rotate(-45deg) scale(1.3); opacity: 1; }
+              100% { transform: translateX(-50%) rotate(-45deg) scale(1); opacity: 0.9; }
+            }
+            .z-10 { z-index: 10; }
           `,
         }}
       />
       <div className="min-h-screen bg-black bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] bg-opacity-90 text-white relative overflow-hidden">
-        <Navbar />
+        {/* Background Rocket Launch */}
         <div className="absolute inset-0 pointer-events-none">
+          <div className="rocket-launch">
+            <div className="rocket-flame"></div>
+          </div>
+          {/* Stars */}
           <div className="absolute w-2 h-2 bg-white rounded-full opacity-50 animate-twinkle top-10% left-20%" />
           <div className="absolute w-1 h-1 bg-white rounded-full opacity-70 animate-twinkle delay-500 top-30% left-70%" />
           <div className="absolute w-3 h-3 bg-white rounded-full opacity-50 animate-twinkle delay-1000 top-60% left-40%" />
           <div className="absolute w-2 h-2 bg-white rounded-full opacity-70 animate-twinkle delay-300 top-15% right-30%" />
           <div className="absolute w-1 h-1 bg-white rounded-full opacity-50 animate-twinkle delay-700 top-50% left-50%" />
         </div>
-        <div className="py-16 px-4">
+        <div className="py-16 px-4 relative z-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-center mb-12 animate-slide-up">
-          <TypewriterText text="Explore the wonders of space" />
+            <TypewriterText text="Unveil the Mysteries of the Cosmos" />
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Feature 1 */}
             <div className="feature-card animate-slide-up">
               <div className="feature-icon">📷</div>
-              <h2 className="feature-title">Image of the Day</h2>
+              <h2 className="feature-title">Cosmic Snapshot of the Day</h2>
               <p className="feature-desc">
-                Discover daily cosmic beauty through NASA’s Astronomy Picture of the Day. A new stunning space image awaits you every 24 hours.
+                Marvel at a breathtaking new image from NASA’s Astronomy Picture of the Day, revealing the universe’s wonders every 24 hours.
               </p>
-              <Link href="/features/apod" className="learn-more">Learn More</Link>
+              <Link href="/features/apod" className="learn-more">Dive In</Link>
             </div>
 
             {/* Feature 2 */}
             <div className="feature-card animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <div className="feature-icon">🪐</div>
-              <h2 className="feature-title">NASA Image Library</h2>
+              <h2 className="feature-title">Galactic Image Vault</h2>
               <p className="feature-desc">
-                Explore a treasure chest of high-quality images from NASA missions, satellites, and telescopes across the galaxy.
+                Journey through NASA’s vast collection of awe-inspiring visuals, capturing the beauty of distant stars, nebulae, and beyond.
               </p>
-              <Link href="/features/nasa-library" className="learn-more">Learn More</Link>
+              <Link href="/features/nasa-library" className="learn-more">Explore Now</Link>
             </div>
 
             {/* Feature 3 */}
             <div className="feature-card animate-slide-up" style={{ animationDelay: '0.4s' }}>
               <div className="feature-icon">⚖️</div>
-              <h2 className="feature-title">Calculate Your Weight</h2>
+              <h2 className="feature-title">Weigh Your Cosmic Self</h2>
               <p className="feature-desc">
-                Curious how much you'd weigh on Mars or Jupiter? Enter your weight and find out instantly!
+                Ever wondered what you’d weigh on Venus or Saturn? Input your Earth weight and discover your cosmic mass instantly!
               </p>
-              <Link href="/features/weight" className="learn-more">Learn More</Link>
+              <Link href="/features/weight" className="learn-more">Find Out</Link>
             </div>
 
             {/* Feature 4 */}
             <div className="feature-card animate-slide-up" style={{ animationDelay: '0.6s' }}>
               <div className="feature-icon">🚀</div>
-              <h2 className="feature-title">Upcoming Space Launches</h2>
+              <h2 className="feature-title">Starbound Launches</h2>
               <p className="feature-desc">
-                Stay up-to-date with upcoming rocket launches, missions, and space exploration events around the world.
+                Track thrilling rocket launches and space missions worldwide, keeping you connected to humanity’s next steps into the stars.
               </p>
-              <Link href="/features/launches" className="learn-more">Learn More</Link>
+              <Link href="/features/launches" className="learn-more">Stay Updated</Link>
             </div>
 
             {/* Feature 5 */}
             <div className="feature-card animate-slide-up" style={{ animationDelay: '0.8s' }}>
               <div className="feature-icon">🌍</div>
-              <h2 className="feature-title">Solar System Journey</h2>
+              <h2 className="feature-title">Solar System Odyssey</h2>
               <p className="feature-desc">
-                Take a virtual trip through our Solar System. Learn fun facts, view planets in 3D, and zoom across space!
+                Embark on a virtual voyage through our Solar System in stunning 3D, uncovering cosmic secrets and planetary wonders.
               </p>
-              <Link href="/features/solar-system" className="learn-more">Learn More</Link>
+              <Link href="/features/solar-system" className="learn-more">Start Journey</Link>
             </div>
 
             {/* Feature 6 */}
             <div className="feature-card animate-slide-up" style={{ animationDelay: '1s' }}>
-              <div className="feature-icon">🌡️</div>
-              <h2 className="feature-title">Mars Weather Monitor</h2>
+              <div className="feature-icon">🪐</div>
+              <h2 className="feature-title">Astronomy Calendar</h2>
               <p className="feature-desc">
-                Check the latest temperature, wind, and pressure conditions on the Red Planet with real-time data from NASA’s rovers.
+                Navigate the celestial events of the year with our Astronomy Calendar, highlighting meteor showers, eclipses, and more.
               </p>
-              <Link href="/features/mars-weather" className="learn-more">Learn More</Link>
+              <Link href="/features/calendar" className="learn-more">View Calendar</Link>
             </div>
           </div>
         </div>

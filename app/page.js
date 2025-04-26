@@ -1,11 +1,13 @@
-"use client";
-
 import React from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 
 function App() {
   return (
     <>
+    <Head>
+        <link rel="icon" href="/the-universe/public/favicon.ico" />
+      </Head>
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -34,10 +36,6 @@ function App() {
             .left-70\\% { left: 70%; }
             .top-60\\% { top: 60%; }
             .left-40\\% { left: 40%; }
-            .top-20\\% { top: 20%; }
-            .left-10\\% { left: 10%; }
-            .top-40\\% { top: 40%; }
-            .right-20\\% { right: 20%; }
             .top-15\\% { top: 15%; }
             .right-30\\% { right: 30%; }
             .top-50\\% { top: 50%; }
@@ -69,62 +67,64 @@ function App() {
             .transition-all { transition: all 0.3s; }
             .duration-300 { transition-duration: 300ms; }
             .hover\\:scale-110:hover { transform: scale(1.1); }
-            .portal-button {
-              width: 120px;
-              height: 120px;
-              background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, #1e3a8a 40%, #000 70%);
+            .cosmic-button {
+              width: 200px;
+              height: 80px;
+              background: linear-gradient(45deg, #1e3a8a, #6b21a8);
               position: relative;
               display: flex;
               align-items: center;
               justify-content: center;
               text-align: center;
               color: #fff;
-              font-size: 1rem;
-              font-weight: 600;
-              text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+              font-size: 1.25rem;
+              font-weight: 700;
+              text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+              border-radius: 50px;
+              border: 2px solid rgba(147, 51, 234, 0.5);
+              box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
               overflow: hidden;
-              border: 2px solid rgba(59, 130, 246, 0.5);
-              box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+              transition: all 0.3s;
+              animation: cosmic-pulse 3s ease-in-out infinite;
             }
-            .portal-button:hover {
-              box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 40px rgba(147, 51, 234, 0.5);
+            .cosmic-button:hover {
+              box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 50px rgba(147, 51, 234, 0.6);
+              transform: scale(1.1);
             }
-            .portal-button::before {
+            .cosmic-button::before {
               content: '';
               position: absolute;
-              width: 20px;
-              height: 20px;
-              background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
-              top: -30px;
-              left: 50%;
-              transform: translateX(-50%);
+              width: 100%;
+              height: 100%;
+              background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+              opacity: 0;
+              transition: opacity 0.4s;
+            }
+            .cosmic-button:hover::before {
+              opacity: 1;
+            }
+            .cosmic-button::after {
+              content: '';
+              position: absolute;
+              width: 50px;
+              height: 50px;
+              background: radial-gradient(circle, rgba(59, 130, 246, 0.5), transparent);
+              top: -25px;
+              left: -25px;
               opacity: 0;
               transition: all 0.4s;
             }
-            .portal-button:hover::before {
-              top: 120px;
+            .cosmic-button:hover::after {
+              top: 25px;
+              left: 25px;
               opacity: 1;
             }
-            .portal-button::after {
-              content: '';
-              position: absolute;
-              width: 15px;
-              height: 15px;
-              background: radial-gradient(circle, rgba(147, 51, 234, 0.8), transparent);
-              bottom: -30px;
-              left: 70%;
-              transform: translateX(-50%);
-              opacity: 0;
-              transition: all 0.4s 0.2s;
-            }
-            .portal-button:hover::after {
-              bottom: 120px;
-              opacity: 1;
-            }
-            .portal-text {
+            .cosmic-text {
+              position: relative;
+              z-index: 1;
               transition: transform 0.3s;
             }
-            .portal-button:hover .portal-text {
+            .cosmic-button:hover .cosmic-text {
               transform: translateY(-2px);
             }
             .caption {
@@ -134,11 +134,6 @@ function App() {
             @keyframes twinkle {
               0%, 100% { opacity: 0.4; }
               50% { opacity: 1; }
-            }
-            @keyframes orbit {
-              0% { transform: translate(0, 0); }
-              50% { transform: translate(20px, 30px); }
-              100% { transform: translate(0, 0); }
             }
             @keyframes comet {
               0% { transform: translate(-100vw, 100vh); opacity: 0.8; }
@@ -162,27 +157,19 @@ function App() {
               0% { transform: rotate(0deg); }
               100% { transform: rotate(360deg); }
             }
-            @keyframes portal-pulse {
-              0% { transform: scale(1); opacity: 0.8; }
-              50% { transform: scale(1.05); opacity: 1; }
-              100% { transform: scale(1); opacity: 0.8; }
-            }
-            @keyframes portal-swirl {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
+            @keyframes cosmic-pulse {
+              0% { transform: scale(1); box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+              50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+              100% { transform: scale(1); box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
             }
             .animate-twinkle { animation: twinkle 2s infinite; }
-            .animate-orbit { animation: orbit 10s infinite; }
             .animate-comet { animation: comet 5s infinite linear; }
             .animate-glow { animation: glow 2s ease-in-out infinite; }
             .animate-sun-pulse { animation: sun-pulse 4s infinite; }
             .animate-ray-flicker { animation: ray-flicker 3s infinite; }
             .animate-black-hole-spin { animation: black-hole-spin 20s linear infinite; }
-            .animate-portal-pulse { animation: portal-pulse 3s infinite; }
-            .animate-portal-swirl { animation: portal-swirl 40s linear infinite; }
             .delay-500 { animation-delay: 0.5s; }
             .delay-1000 { animation-delay: 1s; }
-            .delay-2000 { animation-delay: 2s; }
             .delay-300 { animation-delay: 0.3s; }
             .delay-700 { animation-delay: 0.7s; }
             .delay-1200 { animation-delay: 1.2s; }
@@ -241,15 +228,6 @@ function App() {
           <div className="absolute w-3 h-3 bg-white rounded-full opacity-60 animate-twinkle delay-200 top-35% right-40%" />
           <div className="absolute w-2 h-2 bg-white rounded-full opacity-50 animate-twinkle delay-500 top-20% left-30%" />
           <div className="absolute w-1 h-1 bg-white rounded-full opacity-70 animate-twinkle delay-1000 top-40% left-60%" />
-          {/* Planets */}
-          <div
-            className="absolute w-12 h-12 rounded-full opacity-60 animate-orbit top-20% left-10%"
-            style={{ background: 'linear-gradient(to bottom right, #60a5fa, #a855f7)' }}
-          />
-          <div
-            className="absolute w-8 h-8 rounded-full opacity-50 animate-orbit delay-2000 top-40% right-20%"
-            style={{ background: 'linear-gradient(to bottom right, #f87171, #facc15)' }}
-          />
           {/* Comet */}
           <div className="absolute w-4 h-4 bg-white rounded-full opacity-80 animate-comet" />
         </div>
@@ -264,8 +242,8 @@ function App() {
           <div className="mt-8 flex flex-col items-center">
             <p className="text-lg font-semibold caption">Launch into the Cosmos</p>
             <Link href="/features">
-              <button className="mt-4 portal-button rounded-full transition-all duration-300 hover:scale-110 animate-portal-pulse">
-                <span className="portal-text animate-portal-swirl">Explore Now</span>
+              <button className="mt-4 cosmic-button transition-all duration-300 hover:scale-110">
+                <span className="cosmic-text">Explore Now</span>
               </button>
             </Link>
           </div>
